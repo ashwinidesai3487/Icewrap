@@ -2,9 +2,9 @@ import React from 'react';
 import DialogButtonGroup from './DialogButtonGroup';
 
 const DialogFooter = ({ buttons }) => {
-  // Check if we have any buttons
+  
   if (!buttons || buttons.length === 0) {
-    return null; // Nothing to show
+    return null; 
   }
 
   return (
@@ -22,7 +22,7 @@ const DialogFooter = ({ buttons }) => {
      
       <div 
         className="footer-description" 
-        style={{ color: '#666', fontStyle: 'italic',whiteSpace:'nowrap' }}
+       
       >
         Copyright @2025
       </div>

@@ -97,6 +97,7 @@
   color: #666;
   font-style: italic;
   font-size: 13px;
+  white-space: nowrap
 }
 
 .dialog-footer {
