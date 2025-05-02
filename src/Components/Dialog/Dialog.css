@@ -1,34 +1,35 @@
+/* Overlay Background */
 .dialog-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.4); /* Dimmed background */
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 999;
-  transition: background 0.3s ease;
+  align-items: center;
+  z-index: 9999;
 }
 
+/* Dialog Container */
 .dialog-container {
-  background: #fff;
-  padding: 24px 30px;
-  width: auto;
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  animation: fadeIn 0.3s ease-out;
+  background-color: #fff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 700px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
+  pointer-events: auto;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+/* Fade-In Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.92);
   }
   to {
     opacity: 1;
@@ -36,102 +37,194 @@
   }
 }
 
+/* Header & Footer Flex Layout */
 .dialog-header,
 .dialog-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
+/* Header Content (Icon + Title) */
 .dialog-header-left {
   display: flex;
-   
   align-items: center;
-  gap: 12px;
-  
+  gap: 14px;
 }
 
 .dialog-icon {
-  font-size: 26px;
+  font-size: 28px;
   color: #3f51b5;
+  transition: color 0.3s ease;
 }
 
+.dialog-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+  
+}
+
+.dialog-header-left .dialog-icon,
+.dialog-header-left .dialog-title {
+  transition: all 0.3s ease; /* Smooth transitions for any dynamic changes */
+}
+
+
+.dialog-header-left .dialog-title {
+  font-size: 22px; /* Slightly larger title for better prominence */
+}
+
+.dialog-subtitle {
+  font-size: 13px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* Dialog Content */
 .dialog-content {
-  margin: 20px 0;
+  margin: 24px 0;
   color: #333;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.7;
+  padding: 10px 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fafafa;
 }
 
+/* Button Group */
+/* Button Group */
 .dialog-button-group {
   display: flex;
-  flex-wrap: wrap;         
+  flex-wrap: wrap;
   gap: 12px;
-  justify-content: flex-end;  
-  width: 100%;
+  justify-content: flex-end;
+  margin-top: 12px;
 }
 
+/* Enhanced Dialog Button */
 .dialog-button {
-  padding: 10px 16px;
+  padding: 10px 24px;
   cursor: pointer;
-  background-color: #3f51b5;
+  background: linear-gradient(135deg, #3f51b5, #5c6bc0);
   border: none;
   border-radius: 999px;
-  color: white;
-  font-weight: 500;
+  color: #fff;
+  font-weight: 600;
   font-size: 14px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(63, 81, 181, 0.2);
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
 }
 
 .dialog-button:hover {
-  background-color: #303f9f;
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, #303f9f, #3f51b5);
+  box-shadow: 0 6px 14px rgba(63, 81, 181, 0.3);
+  transform: translateY(-1px);
 }
 
 .dialog-button:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
 }
 
+
+.dialog-button:hover {
+  background-color: #303f9f;
+  transform: translateY(-1px);
+}
+
+.dialog-button:active {
+  transform: scale(0.97);
+}
+
+/* Footer Description Text */
 .footer-description {
   flex-grow: 1;
-  color: #666;
-  font-style: italic;
+  color: #888;
   font-size: 13px;
-  white-space: nowrap
+  font-style: italic;
 }
 
+/* Footer Styling */
 .dialog-footer {
-  padding-top: 16px;
-  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
   margin-top: 24px;
 }
 
-
+/* Centered Open Button Styling */
 .open-dialog-button-wrapper {
   display: flex;
-  justify-content: center;  
-  align-items: center;      
-  margin: 40px 0;          
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
 }
 
 .open-dialog-button {
-  padding: 10px 20px;
+  padding: 12px 24px;
   font-size: 16px;
   background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 8px;       
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.2);
 }
 
 .open-dialog-button:hover {
-  background-color: #45a049; 
-  transform: translateY(-2px); 
+  background-color: #45a049;
+  transform: translateY(-2px);
 }
 
 .open-dialog-button:active {
-  background-color: #3e8e41; 
+  background-color: #3e8e41;
   transform: translateY(0px);
+}
+
+/* Optional: Close Button in Header */
+.close-button {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+@media (max-width: 480px) {
+  .dialog-container {
+    padding: 16px;
+    margin: 0 12px; /* Prevent edge-to-edge stretching */
+    max-width: 90vw;
+  }
+
+  .dialog-title {
+    font-size: 18px;
+  }
+
+  .dialog-content {
+    font-size: 15px;
+    padding: 8px 12px;
+  }
+
+  .dialog-button-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dialog-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
 }

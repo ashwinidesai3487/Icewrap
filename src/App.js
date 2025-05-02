@@ -51,7 +51,7 @@ const App = () => {
     ] : []),
     
     { 
-      label: 'Close', 
+      label: '✖', 
       onClick: closeDialog 
     },
     
