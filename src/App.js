@@ -8,8 +8,27 @@ const App = () => {
   const [dynamicHeaderButtons, setDynamicHeaderButtons] = useState([]);
  
   const [buttonCount, setButtonCount] = useState(1);
-
+  const [confirmDialogVisible, setConfirmDialogVisible] = useState(false);
   const closeDialog = () => setIsDialogVisible(false);
+
+
+
+  const handleHideFooterClick = () => {
+    if (showFooterButtons) {
+      setConfirmDialogVisible(true); // Ask for confirmation
+    } else {
+      setShowFooterButtons(true); // Just show it
+    }
+  };
+  
+  const confirmHideFooter = () => {
+    setShowFooterButtons(false); // Actually hide the footer
+    setConfirmDialogVisible(false); // Close confirm dialog
+  };
+  
+  const cancelHideFooter = () => {
+    setConfirmDialogVisible(false); // Just close confirm dialog
+  };
 
 
   const handleAddHeaderButton = () => {
@@ -30,32 +49,30 @@ const App = () => {
   };
 
 
-  const headerButtons = [
-    { 
-      label: showFooterButtons ? 'Hide Footer' : 'Show footer', 
-      onClick: () => setShowFooterButtons(!showFooterButtons) 
-    },
-    ...dynamicHeaderButtons,
+ const headerButtons = [
+  { 
+    label: showFooterButtons ? 'Hide Footer' : 'Show footer', 
+    onClick: handleHideFooterClick 
+  },
+  ...dynamicHeaderButtons,
+  {
+    label: '+', 
+    title: 'Add New button', 
+    onClick: handleAddHeaderButton 
+  },
+  ...(dynamicHeaderButtons.length > 0 ? [
     {
-      label: '+', 
-      title: 'Add New button', 
-      onClick: handleAddHeaderButton 
-    },
+      label: '-', 
+      title: 'Remove button', 
+      onClick: handleRemoveHeaderButton 
+    }
+  ] : []),
+  { 
+    label: '✖', 
+    onClick: closeDialog 
+  },
+];
 
-    ...(dynamicHeaderButtons.length > 0 ? [
-      {
-        label: '-', 
-        title: 'Remove button', 
-        onClick: handleRemoveHeaderButton 
-      }
-    ] : []),
-    
-    { 
-      label: '✖', 
-      onClick: closeDialog 
-    },
-    
-  ];
 
 
 
@@ -94,6 +111,27 @@ const App = () => {
           </DialogContent>
         </Dialog>
       )}
+
+
+
+{confirmDialogVisible && (
+  <Dialog
+    title="Are you sure you want to hide the footer?"
+    icon="⚠️"
+    headerButtons={[{ label: '✖', onClick: cancelHideFooter }]}
+    footerButtons={[
+      { label: 'Cancel', onClick: cancelHideFooter },
+      { label: 'Yes, Hide', onClick: confirmHideFooter }
+    ]}
+  >
+      <div style={{ padding: '1rem' }}>
+            Are you sure you want to hide the footer?
+          </div>
+  </Dialog>
+)}
+
+
+
     </div>
   );
 };
